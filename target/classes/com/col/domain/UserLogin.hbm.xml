@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping schema="col" package="com.col.domain">
+
+	<class name="UserLogin" table="user_login">
+		<id name="userId" column="user_id">
+			<generator class="assigned"/>
+		</id>
+		
+<!-- 		<many-to-one name="customerDetails" column="customer_id" class="CustomerDetails" cascade="all" lazy="false" fetch="select"/> -->
+		<property name="username" column="username"></property>
+		<property name="password" column="password"></property>
+		<property name="userFirstname" column="user_firstname"/>
+		<property name="userLastname" column="user_lastname"/>
+		
+<!-- 		<many-to-one name=""></many-to-one> -->		
+<!-- 		<many-to-one name="customer" column="customer_id" class="Customer" cascade="all" lazy="false" fetch="select" outer-join="true" not-found="ignore"/>   -->
+<!-- 		<many-to-one name="patient" column="patient_id" class="Patients" cascade="all" lazy="false" fetch="select" outer-join="true" not-found="ignore"/>   -->
+<!-- 		<property name="confirmationNumber" column="order_confirmation_number"/> -->
+<!-- 		<property name="julienBarcode" column="julien_barcode" not-null="true"/> -->
+<!-- 		<property name="collectionTime" column="sample_collection_time"/> -->
+<!-- 		<property name="receivedTime" column="sample_received_time"/> -->
+<!-- 		<property name="processingStatus" column="sample_processing_status"/> -->
+<!-- 		<property name="primDiagnosis" column="sample_primary_diagnosis_code"/> -->
+<!-- 		<property name="secDiagnosis" column="sample_secondary_diagnosis_code"/> -->
+<!-- 		<property name="thirdDiagnosis" column="sample_third_diagnosis_code"/> -->
+<!-- 		<property name="fourthDiagnosis" column="sample_fourth_diagnosis_code"/> -->
+<!-- 		<property name="additionalDiagnosis" column="sample_additional_diagnosis_codes"/> -->
+<!-- 		<property name="claimStatus" column="claim"/> -->
+<!-- 		<property name="paymentMethod" column="payment_method"/> -->
+<!-- 		<property name="inVoice" column="invoice_number"/> -->
+	</class>
+
+</hibernate-mapping>
