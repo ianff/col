@@ -39,7 +39,6 @@ public class LoginHandler extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    System.out.println("post");
 	    HttpSession session = request.getSession(true);
 	    PrintWriter out = response.getWriter();
 	    session.setAttribute("isLoggedIn", false);
@@ -47,7 +46,7 @@ public class LoginHandler extends HttpServlet {
 	    String username = request.getParameter("user");
 	    String password = request.getParameter("pass");
 	    System.out.println(username + " " + password);
-	    
+	    System.out.println( new CheckLogin().checkUserLogin(username, password) );
 	    
 	    RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 	    rd.forward(request, response);

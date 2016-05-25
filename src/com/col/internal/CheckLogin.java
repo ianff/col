@@ -10,12 +10,15 @@ import com.col.hibernate.HibernateUtil;
 public class CheckLogin {
     public static boolean checkUserLogin(String username, String password) {
 	boolean isCorrect = false;
-	String hql = "select user_id from UserLogin where username = :username and password = :password";
+	String hql = "select userId from UserLogin where username = :username and password = :password";
 	Session s = HibernateUtil.getSessionFactory().openSession();
 	Query query = s.createQuery(hql);
 	query.setParameter("username", username);
 	query.setParameter("password", password);
-//	long userId = query.get
+	List<Long> userId = query.list();
+	if(userId.get(0) >= 1) {
+	    isCorrect = true;
+	}
 	
 	return isCorrect;
     }
