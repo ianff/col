@@ -16,7 +16,7 @@ public class CheckLogin {
 	query.setParameter("username", username);
 	query.setParameter("password", password);
 	List<Long> userId = query.list();
-	if(userId.get(0) >= 1) {
+	if( userId.size() >= 1 ) {
 	    isCorrect = true;
 	}
 	

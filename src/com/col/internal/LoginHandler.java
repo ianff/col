@@ -46,10 +46,17 @@ public class LoginHandler extends HttpServlet {
 	    String username = request.getParameter("user");
 	    String password = request.getParameter("pass");
 	    System.out.println(username + " " + password);
-	    System.out.println( new CheckLogin().checkUserLogin(username, password) );
-	    
-	    RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-	    rd.forward(request, response);
+	    if( new CheckLogin().checkUserLogin(username, password) ) {
+		session.setAttribute("IsLoggedIn", true);
+		RequestDispatcher rd = request.getRequestDispatcher("welcome.jsp");
+		rd.forward(request, response);
+	    } else {
+		request.setAttribute("errorLogin", true);
+		request.setAttribute("showModal", true);
+		System.out.println("error credential");
+		request.getServletContext().getRequestDispatcher("/welcome.jsp").forward(request, response);
+//		request.setAttribute("exceedLoginAttempts", arg1);
+	    }
 	    
 	}
 
