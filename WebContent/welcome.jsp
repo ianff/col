@@ -42,11 +42,33 @@
 					<li><a href="#"><strong>Projects</strong></a></li>
 					<li><a href="#"><strong>Groups</strong></a></li>
 					<li><a href="#contact" data-toggle="modal"><strong>Contact</strong></a></li>
+					<%
+						if( session.getAttribute("IsLoggedIn") == null || session.getAttribute("IsLoggedIn").equals(false) ) {
+					%>
 					<li><a href="#loginModal" data-toggle="modal">Log In</a></li>
+					<%
+						} else if( session.getAttribute("IsLoggedIn").equals(true) ) {
+					%>
+					<li><a href="#"><strong>Profile</strong></a></li>
+					<%
+						}
+					%>
+					<%
+						if( session.getAttribute("IsLoggedIn") == null || session.getAttribute("IsLoggedIn").equals(false) ) {
+					%>
 					<li>
-						<button href="#" class="btn btn-danger navbar-btn">Sign
-							Up</button>
+						<button href="#" class="btn btn-danger navbar-btn">Sign	Up</button>
 					</li>
+					<%
+						} else if( session.getAttribute("IsLoggedIn").equals(true) ) {
+					%>
+						<form method="post" class="btn btn-danger navbar-btn" action="./LogoutHandler">
+							<input type="submit" value="Logout">
+						</form>	
+<!-- 					<button href="#" class="btn btn-danger navbar-btn">Logout</button> -->
+					<%
+						}
+					%>
 				</ul>
 			</div>
 		</div>
@@ -208,6 +230,8 @@
 	
 	
 	<script type="text/javascript">
+	
+	// login handler
 	$("#loginBtn").click(function() {
 		$.ajax({
 			type: 'POST',
@@ -229,6 +253,12 @@
 			async: false
 		});
 	})
+	
+	// logout function
+	function logoutFunction() {
+		window.location.href = "./welcome.jsp";
+	}
+	
 	</script>
 </body>
 </html>
