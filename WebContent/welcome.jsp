@@ -64,24 +64,16 @@
 						<font color="red">Login</font>
 					</h4>
 				</div>
-				<form id="loginForm" method="post" action="./internal_login">
+<!-- 				<form id="loginForm" method="post" action="./internal_login"> -->
 					<div class="modal-body">
-						<input type="text" placeholder="User ID" name="user" autofocus
-							required /><br> <br> <input type="password"
+						<input type="text" id="userId" placeholder="User ID" name="user" autofocus
+							required /><br> <br> <input type="password" id="passId"
 							placeholder="Password" name="pass" required />
 					</div>
-					<button type="submit" name="login">Sign in</button>
-				</form>
+					<button id="loginBtn" name="login">Sign in</button>
+<!-- 				</form> -->
 				<div class="modal-footer">
 					<div id="login_failed">
-						<%
-						    if (request.getAttribute("errorLogin") != null && request.getAttribute("errorLogin").equals(true)) {
-						%>
-						<span class="misMatch"><i class="fa fa-times-circle"></i>The
-							email or password is incorrect</span>
-						<%
-						    }
-						%>
 					</div>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
@@ -216,7 +208,23 @@
 	
 	
 	<script type="text/javascript">
-	
+	$("#loginBtn").click(function() {
+		$.ajax({
+			type: 'POST',
+			url: './internal_login',
+			data: {
+				user: $('#userId').val(),
+				pass: $('#passId').val()
+			},
+			success: function(data) {
+				$('#login_failed').text(data);
+			},
+			error: function(xhr, status, error) {
+				alert(error);
+			},
+			async: false
+		});
+	})
 	</script>
 </body>
 </html>
