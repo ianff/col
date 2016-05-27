@@ -217,7 +217,11 @@
 				pass: $('#passId').val()
 			},
 			success: function(data) {
-				$('#login_failed').text(data);
+				if(data == "loginSuccessful") {
+					window.location.href = "./welcome.jsp";
+				} else {
+					$('#login_failed').text(data);
+				}
 			},
 			error: function(xhr, status, error) {
 				alert(error);

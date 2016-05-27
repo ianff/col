@@ -48,8 +48,9 @@ public class LoginHandler extends HttpServlet {
 	    System.out.println(username + " " + password);
 	    if( new CheckLogin().checkUserLogin(username, password) ) {
 		session.setAttribute("IsLoggedIn", true);
-		RequestDispatcher rd = request.getRequestDispatcher("welcome.jsp");
-		rd.forward(request, response);
+		out.write("loginSuccessful");
+//		RequestDispatcher rd = request.getRequestDispatcher("welcome.jsp");
+//		rd.forward(request, response);
 		return;
 	    } else {
 		request.setAttribute("errorLogin", true);
