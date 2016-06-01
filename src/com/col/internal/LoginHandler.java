@@ -45,8 +45,9 @@ public class LoginHandler extends HttpServlet {
 	    
 	    String username = request.getParameter("user");
 	    String password = request.getParameter("pass");
-	    System.out.println(username + " " + password);
+//	    System.out.println(username + " " + password);
 	    if( new CheckLogin().checkUserLogin(username, password) ) {
+		System.out.println("login");
 		session.setAttribute("IsLoggedIn", true);
 		out.write("loginSuccessful");
 //		RequestDispatcher rd = request.getRequestDispatcher("welcome.jsp");
